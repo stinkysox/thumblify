@@ -106,14 +106,13 @@ const Generate = () => {
    * Runs when the ID changes or during the loading/polling phase.
    */
   useEffect(() => {
-    if (isLoggedIn && id) {
-      fetchThumbnail();
-    }
+    if (!isLoggedIn || !id) return;
+
+    fetchThumbnail();
 
     let interval: ReturnType<typeof setInterval> | undefined;
 
-    // If we have an ID but no image yet, poll every 2 seconds
-    if (id && loading && isLoggedIn) {
+    if (loading) {
       interval = setInterval(() => {
         fetchThumbnail();
       }, 2000);
