@@ -52,7 +52,7 @@ app.use(
       maxAge: 1000 * 60 * 60 * 24 * 7,
       // For Vercel cross-domain to work, these two lines are the "secret sauce"
       secure: process.env.NODE_ENV === "production",
-      sameSite: process.env.NODe_ENV === "production" ? "none" : "lax",
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
       path: "/",
     },
   })
