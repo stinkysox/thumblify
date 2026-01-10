@@ -27,7 +27,32 @@ const PreviewPanel: React.FC<PreviewPanelProps> = ({
 
   const onDownload = () => {
     if (!thumbnail?.image_url) return;
-    window.open(thumbnail.image_url, "_blank");
+
+    // 1. Create the link
+    const link = document.createElement("a");
+
+    // 2. Improve Cloudinary attachment logic
+    // This ensures "fl_attachment" is added right after "/upload/"
+    const downloadUrl = thumbnail.image_url.replace(
+      "/upload/",
+      "/upload/fl_attachment/"
+    );
+
+    link.href = downloadUrl;
+
+    // 3. Set download attribute (suggests a filename to the browser)
+    link.setAttribute(
+      "download",
+      `thumbnail-${thumbnail._id || "download"}.png`
+    );
+
+    // 4. Ensure it works cross-origin by opening in a new context if needed
+    link.target = "_self";
+
+    // 5. Append, click, and cleanup
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   return (
