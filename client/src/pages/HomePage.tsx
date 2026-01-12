@@ -6,14 +6,16 @@ import ContactSection from "../sections/ContactSection";
 import CTASection from "../sections/CTASection";
 
 export default function HomePage() {
-    return (
-        <>
-            <HeroSection />
-            <FeaturesSection />
-            <TestimonialSection />
-            <PricingSection />
-            <ContactSection />
-            <CTASection />
-        </>
-    );
+  return (
+    <div className="overflow-x-hidden w-full relative">
+      {" "}
+      {/* Add this wrapper */}
+      <HeroSection />
+      <FeaturesSection />
+      <TestimonialSection />
+      <PricingSection />
+      <ContactSection />
+      <CTASection />
+    </div>
+  );
 }
